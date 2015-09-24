@@ -8,12 +8,12 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find(session[:user_id])
   end
 
-  # def current_client
-  #   if session[:user_id]
-  #     user = User.find(session[:user_id])
-  #     @current_client ||= Instagram.client(access_token: user.token)
-  #   end
-  # end
+  def current_client
+    if session[:user_id]
+      user = User.find(session[:user_id])
+      @current_client ||= Instagram.client(access_token: user.token)
+    end
+  end
 
   def authorize!
     redirect_to root_path unless current_user

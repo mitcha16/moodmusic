@@ -5,9 +5,26 @@ class User < ActiveRecord::Base
     user.email     = auth.info.email
     user.name      = auth.info.nickname
     user.image     = auth.info.image
-    user.token     = auth.credentials.token if auth.credentials
+    user.token     = auth.credentials.token
+    user.secret    = auth.credentials.secret
     user.save
 
     return user
+  end
+
+  def service
+    @service ||= TwitterService.new(self)
+  end
+
+  def get_tweets
+    service.tweets.first.text
+  end
+
+  def analyze_tweets
+    Sentimentalizer.analyze(get_tweets, true)
+  end
+
+  def get_mood
+    MoodAnalyzer.analyze_mood(analyze_tweets)
   end
 end

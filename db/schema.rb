@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20150923164520) do
     t.string   "image"
     t.string   "token"
     t.string   "provider"
+    t.string   "secret"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

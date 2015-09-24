@@ -1,5 +1,3 @@
 class UsersController < ApplicationController
-  def show
-    authorize!
-  end
+  before_action :authorize!
 end
