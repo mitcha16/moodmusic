@@ -7,6 +7,7 @@ gem 'rails', '4.2.3'
 gem 'pg'
 gem 'figaro'
 gem 'omniauth-twitter'
+gem 'omniauth-spotify'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 gem "sentimentalizer"
