@@ -1,4 +1,25 @@
 <%= stylesheet_link_tag 'excited', media: 'all', 'data-turbolinks-track' => true %>
+<%= javascript_include_tag 'playlist', 'data-turbolinks-track' => true %>
+
 <div class="container playlist">
   <h3 class="mood">Your mood is 'excited'<h3>
-</div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+          <h1>MoodMusic</h1>
+        </div>
+        <div class="col-sm-2"></div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-4">
+          <h3>PlayList</h3>
+          <div id="latest-playlists">
+          </div>
+        </div>
+        <div class="col-sm-2"></div>
+      </div>
+    </div>
+  </div>

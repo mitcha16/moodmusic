@@ -30,6 +30,7 @@ class User < ActiveRecord::Base
 
   def set_spotify(auth)
     self.spotify_token = auth.credentials.token
+    self.spotify_id    = auth.uid
     self.save
   end
 end
