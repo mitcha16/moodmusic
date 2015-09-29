@@ -32,5 +32,6 @@ class User < ActiveRecord::Base
     self.spotify_token = auth.credentials.token
     self.spotify_id    = auth.uid
     self.save
+    ENV['spotify_auth']= self.spotify_id
   end
 end

@@ -1,5 +1,24 @@
 <%= stylesheet_link_tag 'sad', media: 'all', 'data-turbolinks-track' => true %>
-<%= javascript_include_tag 'playlist', 'data-turbolinks-track' => true %>
+<%= render 'layouts/song_renderer' %>
 <div class="container playlist">
 <h3 class="mood">Your mood is 'sad'<h3>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-2"></div>
+      <div class="col-sm-8">
+        <h1>MoodMusic</h1>
+      </div>
+      <div class="col-sm-2"></div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-2"></div>
+      <div class="col-sm-4">
+        <h3>PlayList</h3>
+        <div id="latest-songs">
+        </div>
+      </div>
+      <div class="col-sm-2"></div>
+    </div>
+  </div>
 </div>

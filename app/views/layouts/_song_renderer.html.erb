@@ -1,0 +1,32 @@
+<script>
+$(document).ready(function(){
+  fetchSong()
+  console.log('Hello')
+})
+
+function renderSong(song){
+  var audio = new Audio();
+  audio.src = song.uri;
+  audio.play();
+  $("#latest-songs").append(
+    "<div class='song' data-id='" +
+    song.id +
+    "'>" + song.name +
+    " by " + song.artists[0].name +
+    "</div><iframe src=\"https://embed.spotify.com/?uri=" +
+    song.uri +
+    "\" frameborder='0' allowtransparency='true'></iframe>"
+  )
+}
+
+function fetchSong(){
+  $.ajax({
+    type:    "GET",
+    url:     "https://api.spotify.com/v1/tracks/70IzgjmGvdFgHJORCRWFHv",
+    headers: {"Authorization": "Bearer " + "<%= current_user.spotify_token %>"},
+    success: function(song) {
+      renderSong(song)
+    }
+  })
+}
+</script>
