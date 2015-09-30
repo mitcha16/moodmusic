@@ -27,11 +27,4 @@ class User < ActiveRecord::Base
   def get_mood
     MoodAnalyzer.analyze_mood(analyze_tweets)
   end
-
-  def set_spotify(auth)
-    self.spotify_token = auth.credentials.token
-    self.spotify_id    = auth.uid
-    self.save
-    ENV['spotify_auth']= self.spotify_id
-  end
 end

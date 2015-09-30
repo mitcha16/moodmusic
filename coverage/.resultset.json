@@ -1,0 +1,96 @@
+{
+  "RSpec": {
+    "coverage": {
+      "/Users/mitchashby16/3module/moodmusic/spec/features/a_can_login_via_omniauth_spec.rb": [
+        1,
+        null,
+        1,
+        null,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        null
+      ],
+      "/Users/mitchashby16/3module/moodmusic/spec/rails_helper.rb": [
+        null,
+        1,
+        1,
+        null,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        null,
+        1,
+        null,
+        1,
+        null,
+        null,
+        null,
+        null,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        null
+      ],
+      "/Users/mitchashby16/3module/moodmusic/app/helpers/application_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/mitchashby16/3module/moodmusic/app/helpers/sessions_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/mitchashby16/3module/moodmusic/app/helpers/users_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/mitchashby16/3module/moodmusic/app/controllers/welcome_controller.rb": [
+        1,
+        null,
+        1,
+        null,
+        null,
+        null
+      ]
+    },
+    "timestamp": 1443575209
+  }
+}

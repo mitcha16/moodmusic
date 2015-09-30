@@ -1,32 +1,53 @@
+<script src="//connect.soundcloud.com/sdk-2.0.0.js"></script>
 <script>
+
+SC.initialize({
+  client_id: '<%= ENV['soundcloud_id'] %>'
+});
+
 $(document).ready(function(){
-  fetchSong()
-  console.log('Hello')
+  fetchPlaylist();
+  playSong();
 })
 
-function renderSong(song){
-  var audio = new Audio();
-  audio.src = song.uri;
-  audio.play();
+function renderSong(playlist){
   $("#latest-songs").append(
     "<div class='song' data-id='" +
-    song.id +
-    "'>" + song.name +
-    " by " + song.artists[0].name +
-    "</div><iframe src=\"https://embed.spotify.com/?uri=" +
-    song.uri +
-    "\" frameborder='0' allowtransparency='true'></iframe>"
+    playlist.id +
+    "'>" + playlist.title +
+    " by " + playlist.uri +
+    "</div><button id='play-song' class='btn btn-default btn-xs'>Play</button></div>"
   )
 }
 
-function fetchSong(){
+function fetchPlaylist(){
   $.ajax({
     type:    "GET",
-    url:     "https://api.spotify.com/v1/tracks/70IzgjmGvdFgHJORCRWFHv",
-    headers: {"Authorization": "Bearer " + "<%= current_user.spotify_token %>"},
-    success: function(song) {
-      renderSong(song)
+    url:     "http://api.soundcloud.com/playlists/405726?client_id=" + "<%= ENV['soundcloud_id'] %>",
+    success: function(playlist) {
+      renderSong(playlist)
     }
   })
 }
+
+function playSong(){
+  $("#latest-songs").delegate("#play-song","click", function(){
+    var song = $(this).closest(".song")
+    SC.stream('/tracks/13158665', function(sound){
+      sound.play();
+    });
+  })
+}
+
 </script>
+
+<!-- // function fetchSong(){
+//   $.ajax({
+//     type:    "GET",
+//     url:     "https://api.spotify.com/v1/tracks/70IzgjmGvdFgHJORCRWFHv",
+//     headers: {"Authorization": "Bearer " + "<%= current_user.spotify_token %>"},
+//     success: function(song) {
+//       renderSong(song)
+//     }
+//   })
+// } -->
