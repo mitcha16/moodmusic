@@ -21,30 +21,37 @@ Rails.application.routes.draw do
       get 'happy', to: 'happys#index'
       get 'happy/:data', to: 'happys#show'
       delete 'happy/:data', to: 'happys#destroy'
+      post 'happy', to: 'happys#create'
 
       get 'calm', to: 'calms#index'
       get 'calm/:data', to: 'calms#show'
       delete 'calm/:data', to: 'calms#destroy'
+      post 'calm', to: 'calms#create'
 
       get 'content', to: 'contents#index'
       get 'content/:data', to: 'contents#show'
       delete 'content/:data', to: 'contents#destroy'
+      post 'content', to: 'contents#create'
 
       get 'mad', to: 'mads#index'
       get 'mad/:data', to: 'mads#show'
       delete 'mad/:data', to: 'mads#destroy'
+      post 'mad', to: 'mads#create'
 
       get 'sad', to: 'sads#index'
       get 'sad/:data', to: 'sads#show'
       delete 'sad/:data', to: 'sads#destroy'
+      post 'sad', to: 'sads#create'
 
       get 'uncomfortable', to: 'uncomfortables#index'
       get 'uncomfortable/:data', to: 'uncomfortables#show'
       delete 'uncomfortable/:data', to: 'uncomfortables#destroy'
+      post 'uncomfortable', to: 'uncomfortables#create'
 
       get 'upset', to: 'upsets#index'
       get 'upset/:data', to: 'upsets#show'
       delete 'upset/:data', to: 'upsets#destroy'
+      post 'upset', to: 'upsets#create'
     end
   end
 end

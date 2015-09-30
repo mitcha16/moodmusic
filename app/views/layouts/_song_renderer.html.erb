@@ -16,7 +16,7 @@ $(document).ready(function(){
 })
 
 function renderSong(song, key){
-  $("#latest-songs").append(
+  $("#latest-songs").prepend(
     "<br><div class='song' data-id='" +
     song.id +
     "' song_key='" + key +  "'>" + song.title +
@@ -105,7 +105,9 @@ function search(){
   $('#search').keyup(function (){
     $('#results').empty();
     var query = document.getElementById("search").value;
-    results(query);
+    if(query) {
+      results(query);
+    }
   });
 }
 
@@ -116,7 +118,6 @@ function results(track) {
     })
   });
 }
-
 
 function renderResult(song){
   $("#results").append(
@@ -137,7 +138,7 @@ function addSong(){
 
 function saveSong(songID) {
   var songParams = {
-    excited: {
+    new: {
       song: songID
     }
   }

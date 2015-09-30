@@ -21,6 +21,6 @@ class Api::V1::ExcitedsController < ApplicationController
   private
 
   def song_params
-    params.require(:excited).permit(:song)
+    params.require(:new).permit(:song)
   end
 end
