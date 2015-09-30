@@ -1,4 +1,5 @@
 <script src="//connect.soundcloud.com/sdk-2.0.0.js"></script>
+
 <script>
 
 SC.initialize({
@@ -8,15 +9,19 @@ SC.initialize({
 $(document).ready(function(){
   fetchPlaylist();
   playSong();
+  pause();
+  deleteSong();
 })
 
 function renderSong(song, key){
   $("#latest-songs").append(
-    "<div class='song' data-id='" +
+    "<br><div class='song' data-id='" +
     song.id +
     "' song_key='" + key +  "'>" + song.title +
-    " by " + song.uri +
-    "</div><button id='play-song' class='btn btn-default btn-xs'>Play</button></div>"
+    " by " + song.user.username +
+    "        <button id='play-song' class='btn btn-default btn-xs'>Play</button>" +
+    "<button id='pause-song' class='btn btn-default btn-xs'>Pause</button>"+
+    "<button id='delete-song' class='btn btn-default btn-xs'>Remove</button></div>"
   )
 }
 
@@ -33,7 +38,7 @@ function fetchSong(song_key){
 function fetchPlaylist(){
   $.ajax({
     type:    "GET",
-    url:     "<%= ENV['url'] %>" + "api/v1/excited",
+    url:     "<%= ENV['url'] %>" + "api/v1/" + "<%= mood %>",
     success: function(playlist) {
       $.each(playlist, function(index, song){
         fetchSong(song.song)
@@ -42,19 +47,56 @@ function fetchPlaylist(){
   })
 }
 
+var stream;
+
 function playSong(){
   $("#latest-songs").delegate("#play-song","click", function(){
-    var song   = $(this).prev('.song')[0].outerHTML.split("\"")[5]
+    var song   = $(this).closest('.song')[0].outerHTML.split("\"")[5]
     var url   = "/tracks/" + song
-    SC.stream(url, function(sound){
-      autoPlay: true,
-      sound.play();
-    });
+    if(!stream) {
+      startStream(url)
+    }
+    else {
+      pauseTrack()
+      startStream(url)
+    }
+  })
+}
+
+function pause() {
+  $("#latest-songs").delegate("#pause-song","click", function(){
+    pauseTrack()
+  });
+}
+
+function pauseTrack() {
+  if(stream) {
+    stream.pause();
+  }
+}
+
+function startStream(url) {
+  SC.stream(url, function(sound){
+    stream = sound;
+    autoPlay: true,
+    sound.play();
+  });
+}
+
+function deleteSong(){
+  $("#latest-songs").delegate("#delete-song","click", function(){
+    var song = $(this).closest(".song")
+    $.ajax({
+      type:    "DELETE",
+      url:     "<%= ENV['url'] %>" + "api/v1/" + "<%= mood %>" + "/" + song.attr('song_key') + ".json",
+      success: function() {
+        song.remove()
+      },
+      error: function() {
+        song.remove()
+      }
+    })
   })
 }
 
 </script>
-
-<!--
-# make databases for songs for each emotion(using the track ids of songs you find) that way you can add songs to the database and cache it and then use a for loop to iterate through the method to get songs to retri
-#eve that number of songs for the page. Then make a delete button to take that div away from the page. remember to send new figaro keys to heroku -->

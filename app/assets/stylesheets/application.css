@@ -23,3 +23,21 @@
  canvas {
    color: blue;
  }
+
+ #latest-songs {
+   width: 100%;
+ }
+
+.btn-default {
+  background: none;
+  color: black;
+  border-width: 2px;
+  border-color: black;
+}
+
+.btn-default:hover {
+  background: none;
+  color: #FF9800;
+  border-width: 2px;
+  border-color: #FF9800;
+}
