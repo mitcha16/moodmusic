@@ -16,6 +16,7 @@ Rails.application.routes.draw do
       get 'excited', to: 'exciteds#index'
       get 'excited/:data', to: 'exciteds#show'
       delete 'excited/:data', to: 'exciteds#destroy'
+      post 'excited', to: 'exciteds#create'
 
       get 'happy', to: 'happys#index'
       get 'happy/:data', to: 'happys#show'

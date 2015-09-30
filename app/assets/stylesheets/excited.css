@@ -2,3 +2,9 @@ body {
   background: url("excited.jpg") no-repeat center center scroll;
   background-size: cover;
 }
+
+html {
+   margin: 0px;
+   min-height: 200%;
+   width: 100%;
+}

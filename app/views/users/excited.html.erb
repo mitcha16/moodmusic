@@ -1,24 +1,28 @@
 <%= stylesheet_link_tag 'excited', media: 'all', 'data-turbolinks-track' => true %>
 <%= render 'layouts/song_renderer',  mood: 'excited'  %>
 <div class="container playlist">
+  <div id='search-box'>
+    <input type="search" id="search" />
+  </div>
   <h3 class="mood">Your mood is 'excited'<h3>
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-2"></div>
         <div class="col-sm-8">
-          <h1>MoodMusic</h1>
         </div>
         <div class="col-sm-2"></div>
       </div>
-
-      <div class="row">
-        <div class="col-sm-2"></div>
-        <div class="col-sm-10">
-          <h3>PlayList</h3>
-          <div id="latest-songs">
-          </div>
+      <div class="col-sm-2"></div>
+      <div class="col-sm-10 songs-container">
+        <h3>PlayList</h3>
+        <div id="latest-songs">
         </div>
-        <div class="col-sm-2"></div>
       </div>
+      <div class="col-sm-10" id="search-results">
+        <div id="results">
+        </div>
+      </div>
+      <div class="col-sm-2"></div>
     </div>
   </div>
+</div>

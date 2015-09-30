@@ -2,3 +2,15 @@ body {
   background: url("calm.jpg") no-repeat center center scroll;
   background-size: cover;
 }
+
+html {
+   margin: 0px;
+   min-height: 130%;
+   width: 100%;
+}
+
+body {
+   margin: 0px;
+   min-height: 100%;
+   width: 100%;
+}

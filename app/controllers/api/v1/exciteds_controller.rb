@@ -13,4 +13,14 @@ class Api::V1::ExcitedsController < ApplicationController
     song = Excited.find_by(song: params[:data])
     respond_with song.destroy
   end
+
+  def create
+    respond_with Excited.create(song_params), location: nil
+  end
+
+  private
+
+  def song_params
+    params.require(:excited).permit(:song)
+  end
 end

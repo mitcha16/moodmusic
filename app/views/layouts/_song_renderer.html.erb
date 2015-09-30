@@ -11,6 +11,8 @@ $(document).ready(function(){
   playSong();
   pause();
   deleteSong();
+  search();
+  addSong();
 })
 
 function renderSong(song, key){
@@ -19,7 +21,7 @@ function renderSong(song, key){
     song.id +
     "' song_key='" + key +  "'>" + song.title +
     " by " + song.user.username +
-    "        <button id='play-song' class='btn btn-default btn-xs'>Play</button>" +
+    "        <br><button id='play-song' class='btn btn-default btn-xs'>Play</button>" +
     "<button id='pause-song' class='btn btn-default btn-xs'>Pause</button>"+
     "<button id='delete-song' class='btn btn-default btn-xs'>Remove</button></div>"
   )
@@ -96,6 +98,56 @@ function deleteSong(){
         song.remove()
       }
     })
+  })
+}
+
+function search(){
+  $('#search').keyup(function (){
+    $('#results').empty();
+    var query = document.getElementById("search").value;
+    results(query);
+  });
+}
+
+function results(track) {
+  SC.get('/tracks', { q: track}, function(tracks) {
+    $.each(tracks, function(index, song){
+      renderResult(song)
+    })
+  });
+}
+
+
+function renderResult(song){
+  $("#results").append(
+    "<div class='result' data-id='" +
+    song.id +
+    "'>" + song.title +
+    " by " + song.user.username +
+    "<button id='add-song' class='btn btn-default btn-xs'>Add Song</button></div>"
+  )
+}
+
+function addSong(){
+  $("#results").delegate("#add-song","click", function(){
+    var song = $(this).closest(".result")[0].outerHTML.split("\"")[3]
+    saveSong(song);
+  })
+}
+
+function saveSong(songID) {
+  var songParams = {
+    excited: {
+      song: songID
+    }
+  }
+  $.ajax({
+    type:    "POST",
+    url:     "<%= ENV['url'] %>" + "api/v1/" + "<%= mood %>" + ".json",
+    data:    songParams,
+    success: function(song) {
+      fetchSong(songID)
+    }
   })
 }
 

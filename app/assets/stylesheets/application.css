@@ -1,32 +1,33 @@
 /*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any styles
- * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
- * file per style scope.
- *
- *= require_tree .
- *= require_self
- */
- @import "bootstrap.css";
+* This is a manifest file that'll be compiled into application.css, which will include all the files
+* listed below.
+*
+* Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+* or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+*
+* You're free to add application-wide styles to this file and they'll appear at the bottom of the
+* compiled file so the styles you add here take precedence over styles defined in any styles
+* defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+* file per style scope.
+*
+*= require_tree .
+*= require_self
+*/
+@import "bootstrap.css";
 
- .playlist {
-   background-color: rgba(255, 255, 255, 0.7);
-   border-radius: 5px;
- }
+.playlist {
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 5px;
+}
 
- canvas {
-   color: blue;
- }
+canvas {
+  color: blue;
+}
 
- #latest-songs {
-   width: 100%;
- }
+#latest-songs {
+  width: 100%;
+  margin-bottom: 10%;
+}
 
 .btn-default {
   background: none;
@@ -40,4 +41,31 @@
   color: #FF9800;
   border-width: 2px;
   border-color: #FF9800;
+}
+
+.songs-container {
+  float: left;
+  margin-left: -20%;
+  width: 50%;
+}
+
+h1 {
+  margin-left: -20%;
+  width: 50%;
+}
+
+#search-box {
+  margin: 2%;
+  margin-left: 78%;
+}
+
+#search-results {
+  float: right;
+  width: 50%;
+  overflow: scroll;
+  height: 20em;
+}
+
+.result:hover {
+  color: #FF9800;
 }
