@@ -9,4 +9,9 @@ Rails.application.routes.draw do
   get 'content', to: 'users#content'
   get 'happy', to: 'users#happy'
   get 'excited', to: 'users#excited'
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do
+      get 'excited', to: 'exciteds#index'
+    end
+  end
 end

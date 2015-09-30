@@ -10,30 +10,44 @@ $(document).ready(function(){
   playSong();
 })
 
-function renderSong(playlist){
+function renderSong(song, key){
   $("#latest-songs").append(
     "<div class='song' data-id='" +
-    playlist.id +
-    "'>" + playlist.title +
-    " by " + playlist.uri +
+    song.id +
+    "' song_key='" + key +  "'>" + song.title +
+    " by " + song.uri +
     "</div><button id='play-song' class='btn btn-default btn-xs'>Play</button></div>"
   )
+}
+
+function fetchSong(song_key){
+  $.ajax({
+    type:    "GET",
+    url:     "http://api.soundcloud.com/tracks/" + song_key + "?client_id=" + "<%= ENV['soundcloud_id'] %>",
+    success: function(song) {
+      renderSong(song, song_key)
+    }
+  })
 }
 
 function fetchPlaylist(){
   $.ajax({
     type:    "GET",
-    url:     "http://api.soundcloud.com/playlists/405726?client_id=" + "<%= ENV['soundcloud_id'] %>",
+    url:     "<%= ENV['url'] %>" + "api/v1/excited",
     success: function(playlist) {
-      renderSong(playlist)
+      $.each(playlist, function(index, song){
+        fetchSong(song.song)
+      })
     }
   })
 }
 
 function playSong(){
   $("#latest-songs").delegate("#play-song","click", function(){
-    var song = $(this).closest(".song")
-    SC.stream('/tracks/13158665', function(sound){
+    var song   = $(this).prev('.song')[0].outerHTML.split("\"")[5]
+    var url   = "/tracks/" + song
+    SC.stream(url, function(sound){
+      autoPlay: true,
       sound.play();
     });
   })
@@ -41,13 +55,6 @@ function playSong(){
 
 </script>
 
-<!-- // function fetchSong(){
-//   $.ajax({
-//     type:    "GET",
-//     url:     "https://api.spotify.com/v1/tracks/70IzgjmGvdFgHJORCRWFHv",
-//     headers: {"Authorization": "Bearer " + "<%= current_user.spotify_token %>"},
-//     success: function(song) {
-//       renderSong(song)
-//     }
-//   })
-// } -->
+<!--
+# make databases for songs for each emotion(using the track ids of songs you find) that way you can add songs to the database and cache it and then use a for loop to iterate through the method to get songs to retri
+#eve that number of songs for the page. Then make a delete button to take that div away from the page. remember to send new figaro keys to heroku -->
