@@ -17,9 +17,9 @@ $(document).ready(function(){
 
 function renderSong(song, key){
   $("#latest-songs").prepend(
-    "<br><div class='song' data-id='" +
+    "<div class='song' data-id='" +
     song.id +
-    "' song_key='" + key +  "'>" + song.title +
+    "' song_key='" + key +  "'><br>" + song.title +
     " by " + song.user.username +
     "        <br><button id='play-song' class='btn btn-default btn-xs'>Play</button>" +
     "<button id='pause-song' class='btn btn-default btn-xs'>Pause</button>"+

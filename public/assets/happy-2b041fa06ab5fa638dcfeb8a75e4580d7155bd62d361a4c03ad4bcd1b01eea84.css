@@ -1,0 +1,10 @@
+html {
+   margin: 0px;
+   min-height: 200%;
+   width: 100%;
+}
+
+body {
+  background: url("happy.jpg") no-repeat center center scroll;
+  background-size: cover;
+}
